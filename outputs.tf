@@ -1,8 +1,8 @@
 output "urls" {
-  value = locals.host_names
+  value = local.host_names
 }
 
 # legacy
 output "url" {
-  value = locals.host_names[0]
+  value = local.host_names[0]
 }
