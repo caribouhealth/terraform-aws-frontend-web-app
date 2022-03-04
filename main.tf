@@ -13,6 +13,14 @@ provider "aws" {
 }
 
 locals {
-  host_names = substr(var.host_name, 0, 4) == "www." ? [var.host_name, substr(var.host_name, 4, -1)] : [var.host_name]
+  host_names = concat(
+    var.host_name != "" ? [var.host_name] : [],
+    var.host_names,
+
+    # legacy -- applies www to the host_name
+    substr(var.host_name, 0, 4) == "www."
+      ? [substr(var.host_name, 4, -1)]
+      : []
+  )
   s3_origin_id = "S3-${var.name}-${var.environment}"
 }

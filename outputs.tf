@@ -1,3 +1,3 @@
-output "url" {
-  value = var.host_name
+output "urls" {
+  value = locals.host_names
 }
